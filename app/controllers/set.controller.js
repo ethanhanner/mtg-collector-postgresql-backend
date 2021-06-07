@@ -39,7 +39,7 @@ exports.create = (req, res) => {
 // Retrieve all Sets from the database, or all Sets that match a code
 exports.findAll = (req, res) => {
   const code = req.query.code;
-  var condition = code ? { code: { [Op.iLike]: `%${title}%` } } : null;
+  var condition = code ? { code: { [Op.iLike]: `%${code}%` } } : null;
 
   Set.findAll({ where: condition })
     .then(data => {
@@ -82,7 +82,7 @@ exports.update = (req, res) => {
         });
       } else {
         res.send({
-          message: `Cannot update Set with code= ${code}. Maybe Set was not found or req.body is empty!`
+          message: `Cannot update Set with code= ${code}. Maybe Set was not found or req.body is empty.`
         });
       }
     })
@@ -93,7 +93,7 @@ exports.update = (req, res) => {
     });
 };
 
-// Delete a Set with the specified id in the request
+// Delete a Set with the specified code in the request
 exports.delete = (req, res) => {
   const code = req.params.code;
 
@@ -103,11 +103,11 @@ exports.delete = (req, res) => {
     .then(num => {
       if (num == 1) {
         res.send({
-          message: "Set was deleted successfully!"
+          message: "Set was deleted successfully."
         });
       } else {
         res.send({
-          message: `Cannot delete Set with code = ${code}. Maybe Set was not found!`
+          message: `Cannot delete Set with code= ${code}. Maybe Set was not found.`
         });
       }
     })
@@ -125,7 +125,7 @@ exports.deleteAll = (req, res) => {
     truncate: false
   })
     .then(nums => {
-      res.send({ message: `${nums} Sets were deleted successfully!` });
+      res.send({ message: `${nums} Sets were deleted successfully.` });
     })
     .catch(err => {
       res.status(500).send({
