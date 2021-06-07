@@ -1,7 +1,8 @@
 module.exports = (sequelize, Sequelize) => {
   const Set = sequelize.define("set", {
     code: {
-      type: Sequelize.STRING(10)
+      type: Sequelize.STRING(10),
+      primaryKey: true
     },
     name: {
       type: Sequelize.STRING

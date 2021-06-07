@@ -1,7 +1,8 @@
 module.exports = (sequelize, Sequelize) => {
-  const CardSymbol = sequelize.define("cardSymbol", {
+  const CardSymbol = sequelize.define("cardsymbol", {
     symbol: {
-      type: Sequelize.STRING(11)
+      type: Sequelize.STRING(11),
+      primaryKey: true
     },
     description: {
       type: Sequelize.STRING(500)
