@@ -11,7 +11,7 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.DATEONLY
     },
     icon_uri: {
-      type: Sequelize.STRING
+      type: Sequelize.STRING // path: http://localhost:8080/set_icons/<name>.svg
     }
   });
   return Set;

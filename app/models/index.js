@@ -25,5 +25,6 @@ db.sequelize = sequelize;
 db.card = require('./card.model.js')(sequelize, Sequelize);
 db.set = require('./set.model.js')(sequelize, Sequelize);
 db.cardSymbol = require('./card-symbol.model.js')(sequelize, Sequelize);
+db.cardFace = require('./card-face.model')(sequelize, Sequelize);
 
 module.exports = db;

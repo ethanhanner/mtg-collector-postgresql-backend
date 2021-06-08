@@ -1,9 +1,7 @@
-const { UUID, DataTypes } = require("sequelize/types");
-
 module.exports = (sequelize, Sequelize) => {
   const Card = sequelize.define('card', {
     id: { // matches scryfall id
-      type: UUID,
+      type: Sequelize.UUID,
       primaryKey: true
     },
     name: {
@@ -25,7 +23,7 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.DECIMAL
     },
     colors: {
-      type: DataTypes.ARRAY(STRING)
+      type: Sequelize.ARRAY(Sequelize.STRING)
     },
     layout: {
       type: Sequelize.STRING
@@ -58,18 +56,7 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING
     },
     card_faces: {
-      type: DataTypes.JSON
-      /* 
-      name: string,
-      colors: string,
-      flavor_text: string,
-      image_uri: string,
-      mana_cost: string,
-      loyalty: string,
-      oracle_text: string,
-      type: string,
-      subtype: string
-      */
+      type: Sequelize.ARRAY(Sequelize.INTEGER) // array of 2 integers that correspond to id's in the card-face table
     }
   });
   return Card;

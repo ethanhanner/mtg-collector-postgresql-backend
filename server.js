@@ -1,6 +1,7 @@
 // https://bezkoder.com/angular-11-node-js-express-postgresql/
 
 const express = require("express");
+const path = require("path");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
@@ -18,8 +19,13 @@ app.use(bodyParser.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(express.static(path.join(__dirname, 'public')));
+
 const db = require("./app/models");
-db.sequelize.sync();
+db.sequelize.sync({ force: true }).then(() => {
+  console.log("Drop and re-sync db.");
+});
+//db.sequelize.sync();
 
 // simple route
 app.get("/", (req, res) => {
