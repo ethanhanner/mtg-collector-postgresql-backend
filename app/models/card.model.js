@@ -52,8 +52,8 @@ module.exports = (sequelize, Sequelize) => {
     flavor_text: {
       type: Sequelize.STRING
     },
-    frame_effect: {
-      type: Sequelize.STRING
+    frame_effects: {
+      type: Sequelize.ARRAY(Sequelize.STRING)
     },
     card_faces: {
       type: Sequelize.ARRAY(Sequelize.INTEGER) // array of 2 integers that correspond to id's in the card-face table
