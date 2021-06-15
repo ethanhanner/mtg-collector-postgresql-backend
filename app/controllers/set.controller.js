@@ -4,6 +4,7 @@
 const db = require('../models');
 const Set = db.set;
 const Op = db.Sequelize.Op;
+const fs = require("fs");
 
 // Create and save a new Set
 exports.create = (req, res) => {
@@ -134,5 +135,9 @@ exports.deleteAll = (req, res) => {
       });
     });
 };
+
+// exports.iconExists = (req, res) => {
+//   const code = req.params.code;
+// }
 
 // TODO: method to get all sets released before or after a certain date?

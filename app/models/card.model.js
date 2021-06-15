@@ -38,7 +38,7 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING
     },
     rarity: {
-      type: Sequelize.STRING(3)
+      type: Sequelize.STRING(20)
     },
     oracle_text: {
       type: Sequelize.STRING(2048)

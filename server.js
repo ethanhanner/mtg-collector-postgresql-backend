@@ -1,4 +1,6 @@
 // https://bezkoder.com/angular-11-node-js-express-postgresql/
+// run with:
+// node server.js
 
 const express = require("express");
 const path = require("path");
@@ -22,10 +24,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 const db = require("./app/models");
+
+// CALL WHEN MODEL DEFINITIONS (TABLES) CHANGE BETWEEN RUNS
 db.sequelize.sync({ force: true }).then(() => {
   console.log("Drop and re-sync db.");
 });
-//db.sequelize.sync();
+
+// CALL WHEN MODEL DEFINITIONS (TABLES) HAVE NOT CHANGED SINCE LAST RUN
+// db.sequelize.sync();
 
 // simple route
 app.get("/", (req, res) => {
