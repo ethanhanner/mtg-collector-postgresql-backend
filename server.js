@@ -25,10 +25,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const db = require("./app/models");
 
-// CALL WHEN MODEL DEFINITIONS (TABLES) CHANGE BETWEEN RUNS
-db.sequelize.sync({ force: true }).then(() => {
-  console.log("Drop and re-sync db.");
-});
+// CALL WHEN ALL TABLES NEED TO BE DROPPED AND RESYNCED
+// db.sequelize.sync({ force: true }).then(() => {
+//   console.log("Drop and re-sync db.");
+// });
+
+// CALL WHEN JUST THE TABLES THAT HAVE CHANGED NEED TO BE RESYNCED
+db.sequelize.sync({ alter: true }).then(() => {
+  console.log("Alter DB");
+})
 
 // CALL WHEN MODEL DEFINITIONS (TABLES) HAVE NOT CHANGED SINCE LAST RUN
 // db.sequelize.sync();
